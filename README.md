@@ -1,6 +1,12 @@
 # IppRelayUp
+This is a fork [WebClientRelayUp](https://github.com/Hack0ura/WebClientRelayUp) by Raphaël HUON ([@Hack0ura](https://github.com/Hack0ura)) with the coercion primitive replaced to use IppCoerce instead of petitpotam. vibeslopped with claude in a few hours
 
-> Fork of [WebClientRelayUp](https://github.com/Hack0ura/WebClientRelayUp) by Raphaël HUON ([@Hack0ura](https://github.com/Hack0ura)) — all relay, Shadow Credentials, S4U2Self, and SCM UAC bypass logic is his work. This fork only replaces the PetitPotam (MS-EFSR) coercion with IppCoerce (WSD Port Monitor).
+check out the original webclientrelayup and IppCoerce BOF:
+- https://github.com/sudonoodle
+- https://github.com/Hack0ura/WebClientRelayUp
+
+claude's readme:
+---
 
 Local privilege escalation on domain-joined Windows workstations using IppCoerce for HTTP authentication coercion, relayed to LDAP for Shadow Credentials abuse.
 
