@@ -1,5 +1,5 @@
 # IppRelayUp
-This is a fork [WebClientRelayUp](https://github.com/Hack0ura/WebClientRelayUp) by Raphaël HUON ([@Hack0ura](https://github.com/Hack0ura)) with the coercion primitive replaced to use IppCoerce instead of petitpotam. vibeslopped with claude in a few hours
+This is a fork [WebClientRelayUp](https://github.com/Hack0ura/WebClientRelayUp) by Raphaël HUON ([@Hack0ura](https://github.com/Hack0ura)) with the coercion primitive replaced to use IppCoerce instead of petitpotam, vibeslopped with claude
 
 check out the original webclientrelayup and IppCoerce BOF:
 - https://github.com/sudonoodle
