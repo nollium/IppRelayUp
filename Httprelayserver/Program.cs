@@ -29,8 +29,8 @@ namespace HttpLdapRelay
 
             Console.WriteLine(@"
 ╔═══════════════════════════════════════════════════════════════╗
-║                      WebclientRelayUp                         ║
-║                       By @Hack0ura                            ║
+║                        IppRelayUp                             ║
+║          IppCoerce + LDAP Relay + Shadow Credentials          ║
 ╚═══════════════════════════════════════════════════════════════╝
 ");
 
@@ -244,7 +244,7 @@ namespace HttpLdapRelay
 
         static void ShowHelp()
         {
-            Console.WriteLine("Usage: WebClientRelayUp.exe -t <target> -c command [options]");
+            Console.WriteLine("Usage: IppRelayUp.exe -t <target> -c command [options]");
             Console.WriteLine();
             Console.WriteLine("Required Arguments:");
             Console.WriteLine("  -t, --target <host>                LDAP target server (e.g., dc01.contoso.local)");
@@ -266,7 +266,7 @@ namespace HttpLdapRelay
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" Usage example:");
             Console.ResetColor();
-            Console.WriteLine("  WebClientRelayUp.exe -t dc01.contoso.local -d contoso.local -u Administrator -c cmd.exe");
+            Console.WriteLine("  IppRelayUp.exe -t dc01.contoso.local -d contoso.local -u Administrator -c cmd.exe");
             Console.WriteLine();
         }
     }
