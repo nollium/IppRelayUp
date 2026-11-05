@@ -1,6 +1,8 @@
 # IppRelayUp
 
-Local privilege escalation on domain-joined Windows workstations using IppCoerce (WSD Port Monitor) for HTTP authentication coercion, relayed to LDAP for Shadow Credentials abuse.
+> Fork of [WebClientRelayUp](https://github.com/Hack0ura/WebClientRelayUp) by Raphaël HUON ([@Hack0ura](https://github.com/Hack0ura)) — all relay, Shadow Credentials, S4U2Self, and SCM UAC bypass logic is his work. This fork only replaces the PetitPotam (MS-EFSR) coercion with IppCoerce (WSD Port Monitor).
+
+Local privilege escalation on domain-joined Windows workstations using IppCoerce for HTTP authentication coercion, relayed to LDAP for Shadow Credentials abuse.
 
 ## How it works
 
