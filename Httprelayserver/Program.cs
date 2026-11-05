@@ -156,14 +156,6 @@ namespace HttpLdapRelay
 
             Console.WriteLine();
 
-            Console.WriteLine("[*] Checking if Webclient is enabled...");
-            bool result = WebClientTrigger.EnsureWebClientRunning();
-            if (!result)
-            {
-                Console.WriteLine("[-] Unable to start WebClient... Something went wrong.");
-                return 0;
-            }
-
             try
             {
                 var server = new HttpRelayServer(httpPort, ldapTarget, ldapPort, useLdaps, verbose, userToImpseronate, fullDomainName, listenAddress, command, forceOverwrite, useSilverTicket);
