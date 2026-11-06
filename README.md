@@ -12,14 +12,13 @@ Local privilege escalation on domain-joined Windows workstations using IppCoerce
 
 ## How it works
 
-1. Force-start the WebClient service (no admin needed)
-2. Start a local HTTP relay server (default port 8080)
-3. Coerce SYSTEM to authenticate via IppCoerce: calls `XcvDataW("AssocIppDirected")` on the WSD Port Monitor, which sends an NTLM-authenticated HTTP POST to our relay server
-4. Relay the machine account NTLM auth to the Domain Controller's LDAP(S) service
-5. Write a KeyCredential blob into the machine's `msDS-KeyCredentialLink` attribute (Shadow Credentials)
-6. Use PKINIT to obtain a TGT for the machine account
-7. S4U2Self to get a Service Ticket for a domain admin on the local HOST SPN
-8. Authenticate to the local SCM and create a service as SYSTEM ([SCMUACBypass](https://gist.github.com/tyranid/c24cfd1bd141d14d4925043ee7e03c82))
+1. Start a local HTTP relay server (default port 8080)
+2. Coerce SYSTEM to authenticate via IppCoerce: calls `XcvDataW("AssocIppDirected")` on the WSD Port Monitor, which sends an NTLM-authenticated HTTP POST to our relay server
+3. Relay the machine account NTLM auth to the Domain Controller's LDAP(S) service
+4. Write a KeyCredential blob into the machine's `msDS-KeyCredentialLink` attribute (Shadow Credentials)
+5. Use PKINIT to obtain a TGT for the machine account
+6. S4U2Self to get a Service Ticket for a domain admin on the local HOST SPN
+7. Authenticate to the local SCM and create a service as SYSTEM ([SCMUACBypass](https://gist.github.com/tyranid/c24cfd1bd141d14d4925043ee7e03c82))
 
 ## What is IppCoerce
 
